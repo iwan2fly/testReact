@@ -1,0 +1,146 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  padding: 20px;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+
+.login-title:after {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 3px;
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  bottom: -10px;
+  left: 15%;
+  border-radius: 2px;
+}
+
+.login-error {
+  background-color: #ffebee;
+  color: #d32f2f;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border-left: 4px solid #d32f2f;
+  text-align: left;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: all 0.3s;
+  background-color: #f9f9f9;
+}
+
+input:focus {
+  border-color: #a1c4fd;
+  box-shadow: 0 0 0 3px rgba(161, 196, 253, 0.2);
+  background-color: #fff;
+  outline: none;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+  box-shadow: 0 4px 10px rgba(161, 196, 253, 0.3);
+}
+
+.login-btn:hover {
+  background: linear-gradient(to right, #8fb8ff, #a1d9f7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(161, 196, 253, 0.4);
+}
+
+.login-btn:active {
+  transform: translateY(1px);
+}
+
+.login-links {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-links a {
+  color: #6c63ff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+.login-links a:hover {
+  color: #5046e5;
+  text-decoration: underline;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 30px 20px;
+  }
+  
+  .login-title {
+    font-size: 24px;
+  }
+}
