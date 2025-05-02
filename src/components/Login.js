@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login({ onSwitchToRegister, onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   // 로그인 폼 제출 핸들러
   const handleSubmit = (e) => {
@@ -19,8 +21,15 @@ function Login({ onSwitchToRegister, onLogin }) {
     // 실제 구현에서는 여기서 인증 로직을 처리합니다
     setError('');
     onLogin(); // 로그인 성공 시 호출
+    navigate('/dashboard');
+  };
+  
+  const handleRegisterClick = () => {
+    onSwitchToRegister();
+    navigate('/register');
   };
 
+  // 나머지 코드는 그대로 유지하고 버튼 클릭 핸들러만 수정
   return (
     <div className="login-page">
       <div className="login-box">
@@ -59,15 +68,8 @@ function Login({ onSwitchToRegister, onLogin }) {
         </form>
         
         <div className="login-links">
-          <a href="#" onClick={(e) => {
-            e.preventDefault();
-            onSwitchToRegister();
-          }}>
-            계정이 없으신가요? 회원가입
-          </a>
-          <a href="#" onClick={(e) => e.preventDefault()}>
-            비밀번호를 잊으셨나요?
-          </a>
+          <a href="#" onClick={(e) => { e.preventDefault(); handleRegisterClick(); }}>계정이 없으신가요? 회원가입</a>
+          {/* 다른 링크들 */}
         </div>
       </div>
     </div>
