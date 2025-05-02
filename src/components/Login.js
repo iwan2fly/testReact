@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-function Login({ onSwitchToRegister }) {
+function Login({ onSwitchToRegister, onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // 로그인 폼 제출 핸들러
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -15,50 +16,58 @@ function Login({ onSwitchToRegister }) {
       return;
     }
     
-    // 여기에 로그인 로직 추가 (API 호출 등)
-    console.log('로그인 시도:', { email, password });
-    
-    // 성공 시 처리 (예: 홈 페이지로 리다이렉트)
-    alert('로그인 성공!');
+    // 실제 구현에서는 여기서 인증 로직을 처리합니다
+    setError('');
+    onLogin(); // 로그인 성공 시 호출
   };
 
   return (
     <div className="login-page">
       <div className="login-box">
-        <div className="login-title">로그인</div>
+        <h1 className="login-title">로그인</h1>
+        
         {error && <div className="login-error">{error}</div>}
         
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="email">이메일</label>
-            <input
-              type="email"
+            <input 
+              type="email" 
               id="email"
+              placeholder="이메일 주소" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="이메일 주소 입력"
-              required
+              required 
             />
           </div>
           
           <div className="input-group">
             <label htmlFor="password">비밀번호</label>
-            <input
-              type="password"
+            <input 
+              type="password" 
               id="password"
+              placeholder="비밀번호" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="비밀번호 입력"
-              required
+              required 
             />
           </div>
           
-          <button type="submit" className="login-btn">로그인</button>
+          <button type="submit" className="login-btn">
+            로그인
+          </button>
         </form>
         
         <div className="login-links">
-          <a href="#" onClick={onSwitchToRegister}>계정이 없으신가요? 회원가입</a>
-          <a href="#">비밀번호를 잊으셨나요?</a>
+          <a href="#" onClick={(e) => {
+            e.preventDefault();
+            onSwitchToRegister();
+          }}>
+            계정이 없으신가요? 회원가입
+          </a>
+          <a href="#" onClick={(e) => e.preventDefault()}>
+            비밀번호를 잊으셨나요?
+          </a>
         </div>
       </div>
     </div>

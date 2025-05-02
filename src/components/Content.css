@@ -1,0 +1,133 @@
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  height: calc(100vh - 60px);
+}
+
+.content h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 28px;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.content h2:after {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 3px;
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  bottom: -10px;
+  left: 15%;
+  border-radius: 2px;
+}
+
+.content-body {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.card h3 {
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.card h3:after {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  bottom: -5px;
+  left: 15%;
+  border-radius: 2px;
+}
+
+.data-table th {
+  font-weight: bold;
+  color: #555;
+}
+
+.data-table th, .data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.status-badge.new {
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  color: white;
+}
+
+.status-badge.processing {
+  background: linear-gradient(to right, #f6d365, #fda085);
+  color: white;
+}
+
+.status-badge.completed {
+  background: linear-gradient(to right, #84fab0, #8fd3f4);
+  color: white;
+}
+
+.popular-products li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  transition: all 0.3s;
+}
+
+.popular-products li:hover {
+  background-color: #f9f9f9;
+  transform: translateX(5px);
+}
+
+.popular-products li:last-child {
+  border-bottom: none;
+}
+
+.product-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.product-sales {
+  color: #7f8c8d;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
