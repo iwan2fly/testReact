@@ -144,3 +144,81 @@ input:focus {
     font-size: 24px;
   }
 }
+
+/* SNS 로그인 스타일 */
+.sns-login-container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.sns-login-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 15px 0;
+}
+
+.sns-login-divider::before,
+.sns-login-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.sns-login-divider span {
+  padding: 0 10px;
+  color: #777;
+  font-size: 14px;
+}
+
+.sns-login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sns-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.google-btn {
+  background-color: #ffffff;
+  color: #757575;
+  border: 1px solid #dddddd;
+}
+
+.google-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.naver-btn {
+  background-color: #03C75A;
+  color: white;
+}
+
+.naver-btn:hover {
+  background-color: #02b350;
+}
+
+.kakao-btn {
+  background-color: #FEE500;
+  color: #3A1D1D;
+}
+
+.kakao-btn:hover {
+  background-color: #f4dc00;
+}
+
+.sns-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
