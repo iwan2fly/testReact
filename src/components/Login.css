@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-color: #f5f5f5;
   padding: 20px;
 }
 
@@ -17,36 +17,19 @@
   width: 100%;
   max-width: 400px;
   background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  padding: 40px 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  padding: 30px 25px;
   text-align: center;
-  animation: fadeIn 0.6s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .login-title {
-  font-size: 28px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 600;
   color: #333;
-  margin-bottom: 30px;
-  position: relative;
-  display: inline-block;
-}
-
-.login-title:after {
-  content: '';
-  position: absolute;
-  width: 70%;
-  height: 3px;
-  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
-  bottom: -10px;
-  left: 15%;
-  border-radius: 2px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd;
 }
 
 .login-error {
@@ -75,44 +58,38 @@ label {
 
 input {
   width: 100%;
-  padding: 12px 15px;
+  padding: 10px 12px;
   border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 15px;
-  transition: all 0.3s;
+  border-radius: 4px;
+  font-size: 14px;
   background-color: #f9f9f9;
 }
 
 input:focus {
-  border-color: #a1c4fd;
-  box-shadow: 0 0 0 3px rgba(161, 196, 253, 0.2);
+  border-color: #4a90e2;
   background-color: #fff;
   outline: none;
 }
 
 .login-btn {
   width: 100%;
-  padding: 14px;
-  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  padding: 12px;
+  background-color: #4a90e2;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   color: #fff;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
   margin-top: 10px;
-  box-shadow: 0 4px 10px rgba(161, 196, 253, 0.3);
 }
 
 .login-btn:hover {
-  background: linear-gradient(to right, #8fb8ff, #a1d9f7);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(161, 196, 253, 0.4);
+  background-color: #3a80d2;
 }
 
 .login-btn:active {
-  transform: translateY(1px);
+  background-color: #2a70c2;
 }
 
 .login-links {
@@ -139,28 +116,16 @@ input:focus {
   .login-box {
     padding: 30px 20px;
   }
-  
+
   .login-title {
     font-size: 24px;
   }
 }
 
 
-/* 추가 애니메이션 효과 */
+/* 입력 필드 스타일링 */
 .input-group {
   position: relative;
-  overflow: hidden;
-}
-
-.input-group input {
-  transition: all 0.3s ease;
-}
-
-.input-group input:focus + label,
-.input-group input:valid + label {
-  transform: translateY(-25px);
-  font-size: 12px;
-  color: #6c63ff;
 }
 
 /* 소셜 로그인 버튼 (선택적) */
@@ -172,21 +137,19 @@ input:focus {
 }
 
 .social-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #f5f5f5;
-  border: none;
+  border: 1px solid #eee;
   cursor: pointer;
-  transition: all 0.3s;
 }
 
 .social-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  background: #eee;
 }
 
 
@@ -229,12 +192,10 @@ input:focus {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 10px 0;
-  border: none;
+  padding: 8px 0;
   border-radius: 4px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .google-btn {

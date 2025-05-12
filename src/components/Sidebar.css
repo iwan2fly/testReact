@@ -1,30 +1,38 @@
 .sidebar {
   width: 250px;
   background-color: #fff;
-  border-right: 1px solid #ddd;
   padding: 20px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 70px);
   overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin: 15px;
+  border-radius: 4px;
 }
 
 .sidebar h3 {
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-  color: #2c3e50;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
 }
 
 .sub-menu {
   list-style: none;
+  padding: 0;
 }
 
 .sub-menu li {
-  padding: 10px 15px;
-  margin-bottom: 5px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
   cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.3s;
   text-align: left;
+  background-color: #f9f9f9;
+  color: #555;
+  font-weight: 500;
+  border: 1px solid transparent;
 }
 
 .sub-menu li:hover {
@@ -32,6 +40,8 @@
 }
 
 .sub-menu li.active {
-  background-color: #3498db;
-  color: white;
+  background-color: white;
+  color: #333;
+  font-weight: 600;
+  border: 1px solid #ddd;
 }

@@ -35,18 +35,18 @@ function Login({ onSwitchToRegister, onLogin }) {
   // 로그인 폼 제출 핸들러
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // 간단한 유효성 검사
     if (!email || !password) {
       setError('이메일과 비밀번호를 모두 입력해주세요.');
       return;
     }
-    
+
     // 로그인 API 호출
     try {
       setIsLoading(true);
       setError('');
-      
+
       const response = await fetch('http://localhost:8080/api/auth/login', {
         method: 'POST',
         headers: {
@@ -57,22 +57,22 @@ function Login({ onSwitchToRegister, onLogin }) {
           password
         })
       });
-      
+
       const data = await response.json();
-      
+
       if (!response.ok) {
         console.log('로그인 실패:', data);
         throw new Error(data.message || '로그인 중 오류가 발생했습니다.');
       }
-      
+
       // 성공 시 처리
       console.log('로그인 성공:', data);
-      
+
       // 토큰이 있다면 로컬 스토리지에 저장
       if (data.token) {
         localStorage.setItem('token', data.token);
       }
-      
+
       // 로그인 성공 처리
       onLogin();
       navigate('/dashboard');
@@ -83,7 +83,7 @@ function Login({ onSwitchToRegister, onLogin }) {
       setIsLoading(false);
     }
   };
-  
+
   const handleRegisterClick = () => {
     onSwitchToRegister();
     navigate('/register');
@@ -93,9 +93,9 @@ function Login({ onSwitchToRegister, onLogin }) {
     <div className="login-page">
       <div className="login-box">
         <h1 className="login-title">로그인</h1>
-        
+
         {error && <div className="login-error">{error}</div>}
-        
+
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="email">이메일</label>
@@ -109,7 +109,7 @@ function Login({ onSwitchToRegister, onLogin }) {
               disabled={isLoading}
             />
           </div>
-          
+
           <div className="input-group">
             <label htmlFor="password">비밀번호</label>
             <input 
@@ -122,23 +122,23 @@ function Login({ onSwitchToRegister, onLogin }) {
               disabled={isLoading}
             />
           </div>
-          
+
           <button type="submit" className="login-btn" disabled={isLoading}>
             {isLoading ? '처리 중...' : '로그인'}
           </button>
         </form>
-        
-        {/* 회원가입 버튼으로 변경 */}
-        <div className="register-btn-container">
-          <button 
-            className="register-redirect-btn" 
+
+        {/* 회원가입 링크로 변경 */}
+        <div className="login-links">
+          <a 
+            href="#" 
             onClick={(e) => { e.preventDefault(); handleRegisterClick(); }}
-            disabled={isLoading}
+            style={{ pointerEvents: isLoading ? 'none' : 'auto' }}
           >
             계정이 없으신가요? 회원가입
-          </button>
+          </a>
         </div>
-        
+
         {/* SNS 로그인 버튼 추가 */}
         <div className="sns-login-container">
           <div className="sns-login-divider">
