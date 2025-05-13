@@ -5,7 +5,6 @@ import { FaChartLine, FaShoppingCart, FaUsers, FaMoneyBillWave, FaBoxOpen, FaHea
 function Content({ activeMenu }) {
   return (
     <div className="content">
-      <h2>{getPageTitle(activeMenu)}</h2>
       <div className="content-body">
         {renderContent(activeMenu)}
       </div>
@@ -16,13 +15,13 @@ function Content({ activeMenu }) {
 // 메뉴 ID에 따른 페이지 타이틀 반환
 function getPageTitle(menuId) {
   const titles = {
-    dashboard: '대시보드 개요',
+    dashboard: '',
     products: '상품 관리',
     orders: '주문 관리',
     customers: '고객 관리',
     settings: '시스템 설정'
   };
-  return titles[menuId] || '페이지';
+  return titles[menuId] || '';
 }
 
 // 메뉴 ID에 따른 컨텐츠 렌더링
@@ -42,7 +41,7 @@ function renderContent(menuId) {
                 <p className="stat-change positive">+12.5% <span>지난주 대비</span></p>
               </div>
             </div>
-            
+
             <div className="stat-card">
               <div className="stat-icon">
                 <FaBoxOpen />
@@ -53,7 +52,7 @@ function renderContent(menuId) {
                 <p className="stat-change positive">+5.2% <span>지난달 대비</span></p>
               </div>
             </div>
-            
+
             <div className="stat-card">
               <div className="stat-icon">
                 <FaUsers />
@@ -64,7 +63,7 @@ function renderContent(menuId) {
                 <p className="stat-change positive">+8.7% <span>지난달 대비</span></p>
               </div>
             </div>
-            
+
             <div className="stat-card">
               <div className="stat-icon">
                 <FaMoneyBillWave />
@@ -76,7 +75,7 @@ function renderContent(menuId) {
               </div>
             </div>
           </div>
-          
+
           <div className="dashboard-grid">
             <div className="dashboard-card chart-card">
               <div className="card-header">
@@ -101,7 +100,7 @@ function renderContent(menuId) {
                 </div>
               </div>
             </div>
-            
+
             <div className="dashboard-card">
               <div className="card-header">
                 <h3>최근 주문</h3>
@@ -146,7 +145,7 @@ function renderContent(menuId) {
                 </tbody>
               </table>
             </div>
-            
+
             <div className="dashboard-card">
               <div className="card-header">
                 <h3>인기 상품</h3>
@@ -197,7 +196,7 @@ function renderContent(menuId) {
                 </li>
               </ul>
             </div>
-            
+
             <div className="dashboard-card">
               <div className="card-header">
                 <h3>고객 통계</h3>
@@ -237,15 +236,15 @@ function renderContent(menuId) {
         </div>
       );
     case 'products':
-      return <div>상품 관리 페이지 컨텐츠</div>;
+      return <div>상품 관리 컨텐츠</div>;
     case 'orders':
-      return <div>주문 관리 페이지 컨텐츠</div>;
+      return <div>주문 관리 컨텐츠</div>;
     case 'customers':
-      return <div>고객 관리 페이지 컨텐츠</div>;
+      return <div>고객 관리 컨텐츠</div>;
     case 'settings':
-      return <div>설정 페이지 컨텐츠</div>;
+      return <div>설정 컨텐츠</div>;
     default:
-      return <div>페이지를 선택해주세요</div>;
+      return <div>선택해주세요</div>;
   }
 }
 

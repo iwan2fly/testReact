@@ -4,9 +4,7 @@
   overflow-y: auto;
   background-color: white;
   height: calc(100vh - 70px);
-  margin: 15px 0;
-  border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin: 0 0 15px 0;
 }
 
 .content h2 {
@@ -20,6 +18,7 @@
 
 .content-body {
   /* No animation */
+  padding-top: 20px;
 }
 
 /* 대시보드 통계 카드 */

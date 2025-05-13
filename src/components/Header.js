@@ -4,7 +4,7 @@ import './Header.css';
 
 function Header({ activeMenu, onMenuChange, onLogout }) {
   const navigate = useNavigate();
-  
+
   const menus = [
     { id: 'dashboard', label: '대시보드' },
     { id: 'products', label: '상품 관리' },
@@ -17,7 +17,7 @@ function Header({ activeMenu, onMenuChange, onLogout }) {
     // URL만 변경하고, activeMenu는 MainLayout의 useEffect에서 처리하도록 함
     navigate(`/${menuId}`);
   };
-  
+
   const handleLogout = () => {
     onLogout();
     navigate('/login');
