@@ -16,17 +16,27 @@ function App() {
     if (loggedInStatus === 'true') {
       setIsLoggedIn(true);
     }
-    
-    // 마지막으로 활성화된 메뉴도 저장해두면 좋습니다
-    const savedMenu = localStorage.getItem('activeMenu');
-    if (savedMenu) {
-      setActiveMenu(savedMenu);
+
+    // 현재 URL에 따라 activeMenu 설정
+    const currentPath = window.location.pathname;
+    const menuId = getMenuIdFromPath(currentPath);
+
+    // 커뮤니티 관련 경로인 경우 해당 메뉴로 설정
+    if (['freeboard', 'marketplace', 'gallery', 'recommended'].includes(menuId)) {
+      setActiveMenu(menuId);
+      localStorage.setItem('activeMenu', menuId);
+    } else {
+      // 다른 경로인 경우 localStorage에서 마지막 활성화된 메뉴 가져오기
+      const savedMenu = localStorage.getItem('activeMenu');
+      if (savedMenu) {
+        setActiveMenu(savedMenu);
+      }
     }
   }, []);
 
   const switchToLogin = () => setCurrentView('login');
   const switchToRegister = () => setCurrentView('register');
-  
+
   const handleLogin = () => {
     setIsLoggedIn(true);
     localStorage.setItem('isLoggedIn', 'true');
@@ -34,15 +44,25 @@ function App() {
     setActiveMenu('dashboard');
     localStorage.setItem('activeMenu', 'dashboard');
   };
-  
+
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('isLoggedIn');
   };
-  
+
   const handleMenuChange = (menu) => {
     setActiveMenu(menu);
     localStorage.setItem('activeMenu', menu);
+  };
+
+  // 특정 경로에 대한 메뉴 ID 매핑
+  const getMenuIdFromPath = (path) => {
+    // 커뮤니티 관련 경로들 처리
+    if (path === '/freeboard') return 'freeboard';
+    if (path === '/marketplace') return 'marketplace';
+    if (path === '/gallery') return 'gallery';
+    if (path === '/recommended') return 'recommended';
+    return path.substring(1); // 첫 번째 문자(/) 제거
   };
 
   return (
@@ -56,6 +76,38 @@ function App() {
           <Route path="/register" element={
             isLoggedIn ? <Navigate to={`/${activeMenu}`} /> : 
             <Register onSwitchToLogin={switchToLogin} />
+          } />
+          <Route path="/freeboard" element={
+            !isLoggedIn ? <Navigate to="/login" /> :
+            <MainLayout 
+              activeMenu="freeboard" 
+              onMenuChange={handleMenuChange}
+              onLogout={handleLogout}
+            />
+          } />
+          <Route path="/marketplace" element={
+            !isLoggedIn ? <Navigate to="/login" /> :
+            <MainLayout 
+              activeMenu="marketplace" 
+              onMenuChange={handleMenuChange}
+              onLogout={handleLogout}
+            />
+          } />
+          <Route path="/gallery" element={
+            !isLoggedIn ? <Navigate to="/login" /> :
+            <MainLayout 
+              activeMenu="gallery" 
+              onMenuChange={handleMenuChange}
+              onLogout={handleLogout}
+            />
+          } />
+          <Route path="/recommended" element={
+            !isLoggedIn ? <Navigate to="/login" /> :
+            <MainLayout 
+              activeMenu="recommended" 
+              onMenuChange={handleMenuChange}
+              onLogout={handleLogout}
+            />
           } />
           <Route path="/:menuId" element={
             !isLoggedIn ? <Navigate to="/login" /> :
