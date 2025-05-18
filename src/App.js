@@ -78,46 +78,46 @@ function App() {
             <Register onSwitchToLogin={switchToLogin} />
           } />
           <Route path="/freeboard" element={
-            !isLoggedIn ? <Navigate to="/login" /> :
             <MainLayout 
               activeMenu="freeboard" 
               onMenuChange={handleMenuChange}
               onLogout={handleLogout}
+              isLoggedIn={isLoggedIn}
             />
           } />
           <Route path="/marketplace" element={
-            !isLoggedIn ? <Navigate to="/login" /> :
             <MainLayout 
               activeMenu="marketplace" 
               onMenuChange={handleMenuChange}
               onLogout={handleLogout}
+              isLoggedIn={isLoggedIn}
             />
           } />
           <Route path="/gallery" element={
-            !isLoggedIn ? <Navigate to="/login" /> :
             <MainLayout 
               activeMenu="gallery" 
               onMenuChange={handleMenuChange}
               onLogout={handleLogout}
+              isLoggedIn={isLoggedIn}
             />
           } />
           <Route path="/recommended" element={
-            !isLoggedIn ? <Navigate to="/login" /> :
             <MainLayout 
               activeMenu="recommended" 
               onMenuChange={handleMenuChange}
               onLogout={handleLogout}
+              isLoggedIn={isLoggedIn}
             />
           } />
           <Route path="/:menuId" element={
-            !isLoggedIn ? <Navigate to="/login" /> :
             <MainLayout 
               activeMenu={activeMenu} 
               onMenuChange={handleMenuChange}
               onLogout={handleLogout}
+              isLoggedIn={isLoggedIn}
             />
           } />
-          <Route path="/" element={<Navigate to={isLoggedIn ? `/${activeMenu}` : "/login"} />} />
+          <Route path="/" element={<Navigate to={`/${activeMenu}`} />} />
         </Routes>
       </div>
     </BrowserRouter>

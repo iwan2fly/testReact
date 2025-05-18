@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
-function Header({ activeMenu, onMenuChange, onLogout }) {
+function Header({ activeMenu, onMenuChange, onLogout, isLoggedIn }) {
   const navigate = useNavigate();
 
   const menus = [
@@ -33,6 +33,10 @@ function Header({ activeMenu, onMenuChange, onLogout }) {
     navigate('/login');
   };
 
+  const handleLogin = () => {
+    navigate('/login');
+  };
+
   return (
     <header className="header">
       <div className="logo">관리자 시스템</div>
@@ -54,8 +58,14 @@ function Header({ activeMenu, onMenuChange, onLogout }) {
         </ul>
       </nav>
       <div className="user-info">
-        <span>홍길동님</span>
-        <button onClick={handleLogout}>로그아웃</button>
+        {isLoggedIn ? (
+          <>
+            <span>홍길동님</span>
+            <button onClick={handleLogout}>로그아웃</button>
+          </>
+        ) : (
+          <button onClick={handleLogin}>로그인</button>
+        )}
       </div>
     </header>
   );

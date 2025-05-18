@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Content.css';
 import { FaChartLine, FaShoppingCart, FaUsers, FaMoneyBillWave, FaBoxOpen, FaHeadphones, FaBatteryFull } from 'react-icons/fa';
+import WritePost from './WritePost';
 
-function Content({ activeMenu }) {
+function Content({ activeMenu, isLoggedIn = false }) {
+  // State for writing mode
+  const [isWriting, setIsWriting] = useState(false);
+  const [currentBoard, setCurrentBoard] = useState('');
+
   // Mock data for community posts
   const [communityData, setCommunityData] = useState({
     freeboard: [],
@@ -68,10 +73,26 @@ function Content({ activeMenu }) {
     setCommunityData(mockData);
   }, []);
 
+  // Function to handle starting a new post
+  const handleStartWriting = (boardType) => {
+    setCurrentBoard(boardType);
+    setIsWriting(true);
+  };
+
+  // Function to handle canceling a post
+  const handleCancelWriting = () => {
+    setIsWriting(false);
+    setCurrentBoard('');
+  };
+
   return (
     <div className="content">
       <div className="content-body">
-        {renderContent(activeMenu, communityData)}
+        {isWriting ? (
+          <WritePost boardType={currentBoard} onCancel={handleCancelWriting} />
+        ) : (
+          renderContent(activeMenu, communityData, isLoggedIn, handleStartWriting)
+        )}
       </div>
     </div>
   );
@@ -134,7 +155,7 @@ function renderCommunitySection(title, posts, sectionId) {
 }
 
 // 메뉴 ID에 따른 컨텐츠 렌더링
-function renderContent(menuId, communityData) {
+function renderContent(menuId, communityData, isLoggedIn, onStartWriting) {
   switch(menuId) {
     case 'dashboard':
       return (
@@ -151,7 +172,12 @@ function renderContent(menuId, communityData) {
     case 'freeboard':
       return (
         <div className="freeboard-content">
-          <h2 className="page-title">자유게시판</h2>
+          <div className="freeboard-header">
+            <h4 className="freeboard-title">자유게시판</h4>
+            {isLoggedIn && (
+              <button className="write-button" onClick={() => onStartWriting('freeboard')}>글쓰기</button>
+            )}
+          </div>
           <div className="freeboard-list">
             <table className="post-table">
               <thead>
@@ -183,7 +209,12 @@ function renderContent(menuId, communityData) {
     case 'marketplace':
       return (
         <div className="freeboard-content">
-          <h2 className="page-title">벼룩시장</h2>
+          <div className="freeboard-header">
+            <h4 className="freeboard-title">벼룩시장</h4>
+            {isLoggedIn && (
+              <button className="write-button" onClick={() => onStartWriting('marketplace')}>글쓰기</button>
+            )}
+          </div>
           <div className="freeboard-list">
             <table className="post-table">
               <thead>
@@ -215,7 +246,12 @@ function renderContent(menuId, communityData) {
     case 'gallery':
       return (
         <div className="freeboard-content">
-          <h2 className="page-title">갤러리</h2>
+          <div className="freeboard-header">
+            <h4 className="freeboard-title">갤러리</h4>
+            {isLoggedIn && (
+              <button className="write-button" onClick={() => onStartWriting('gallery')}>글쓰기</button>
+            )}
+          </div>
           <div className="freeboard-list">
             <table className="post-table">
               <thead>
@@ -247,7 +283,12 @@ function renderContent(menuId, communityData) {
     case 'recommended':
       return (
         <div className="freeboard-content">
-          <h2 className="page-title">추천</h2>
+          <div className="freeboard-header">
+            <h4 className="freeboard-title">추천</h4>
+            {isLoggedIn && (
+              <button className="write-button" onClick={() => onStartWriting('recommended')}>글쓰기</button>
+            )}
+          </div>
           <div className="freeboard-list">
             <table className="post-table">
               <thead>
