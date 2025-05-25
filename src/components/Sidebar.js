@@ -51,8 +51,21 @@ function Sidebar({ activeMenu }) {
     }
   };
 
+  // 프로필 메뉴 아이템 클릭 핸들러
+  const handleProfileMenuItemClick = (itemId) => {
+    if (itemId === 'view-profile') {
+      navigate('/profile');
+    } else if (itemId === 'change-password') {
+      navigate('/change-password');
+    }
+  };
+
   // 주 메뉴에 따른 서브 메뉴 정의
   const subMenus = {
+    profile: [
+      { id: 'view-profile', label: '내 정보보기' },
+      { id: 'change-password', label: '비밀번호 변경' }
+    ],
     dashboard: [
       { id: 'community', label: '커뮤니티', hasSubmenu: true, submenu: [
         { id: 'freeboard', label: '자유게시판' },
@@ -99,8 +112,18 @@ function Sidebar({ activeMenu }) {
 
   // 현재 활성화된 메뉴에 해당하는 서브 메뉴 가져오기
   // 커뮤니티 관련 메뉴인 경우 dashboard의 서브메뉴를 사용
+  // 비밀번호 변경 메뉴인 경우 profile의 서브메뉴를 사용
   const isCommunityMenu = ['freeboard', 'marketplace', 'gallery', 'recommended'].includes(activeMenu);
-  const currentSubMenus = isCommunityMenu ? subMenus['dashboard'] : (subMenus[activeMenu] || []);
+  const isProfileMenu = activeMenu === 'change-password'; // 비밀번호 변경 메뉴 확인
+
+  let menuToUse = activeMenu;
+  if (isCommunityMenu) {
+    menuToUse = 'dashboard';
+  } else if (isProfileMenu) {
+    menuToUse = 'profile';
+  }
+
+  const currentSubMenus = subMenus[menuToUse] || [];
 
   return (
     <div className="sidebar">
@@ -134,7 +157,10 @@ function Sidebar({ activeMenu }) {
                 )}
               </div>
             ) : (
-              <div className="menu-item">
+              <div 
+                className="menu-item"
+                onClick={() => (activeMenu === 'profile' || activeMenu === 'change-password') ? handleProfileMenuItemClick(subMenu.id) : null}
+              >
                 {subMenu.label}
               </div>
             )}
@@ -153,6 +179,8 @@ function getMenuTitle(menuId) {
     orders: '',
     customers: '',
     settings: '',
+    profile: '내 정보',
+    'change-password': '내 정보',
     freeboard: '커뮤니티',  // 커뮤니티 관련 메뉴 타이틀 추가
     marketplace: '커뮤니티',
     gallery: '커뮤니티',

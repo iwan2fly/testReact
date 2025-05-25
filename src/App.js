@@ -109,6 +109,30 @@ function App() {
               isLoggedIn={isLoggedIn}
             />
           } />
+          <Route path="/profile" element={
+            isLoggedIn ? (
+              <MainLayout 
+                activeMenu="profile" 
+                onMenuChange={handleMenuChange}
+                onLogout={handleLogout}
+                isLoggedIn={isLoggedIn}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          } />
+          <Route path="/change-password" element={
+            isLoggedIn ? (
+              <MainLayout 
+                activeMenu="change-password" 
+                onMenuChange={handleMenuChange}
+                onLogout={handleLogout}
+                isLoggedIn={isLoggedIn}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          } />
           <Route path="/:menuId" element={
             <MainLayout 
               activeMenu={activeMenu} 

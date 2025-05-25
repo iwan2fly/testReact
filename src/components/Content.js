@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react';
 import './Content.css';
 import { FaChartLine, FaShoppingCart, FaUsers, FaMoneyBillWave, FaBoxOpen, FaHeadphones, FaBatteryFull } from 'react-icons/fa';
 import WritePost from './WritePost';
+import UserProfile from './UserProfile';
+import ChangePassword from './ChangePassword';
 
 function Content({ activeMenu, isLoggedIn = false }) {
   // State for writing mode
   const [isWriting, setIsWriting] = useState(false);
   const [currentBoard, setCurrentBoard] = useState('');
+
+  // Reset writing mode when activeMenu changes
+  useEffect(() => {
+    setIsWriting(false);
+  }, [activeMenu]);
 
   // Mock data for community posts
   const [communityData, setCommunityData] = useState({
@@ -157,6 +164,10 @@ function renderCommunitySection(title, posts, sectionId) {
 // 메뉴 ID에 따른 컨텐츠 렌더링
 function renderContent(menuId, communityData, isLoggedIn, onStartWriting) {
   switch(menuId) {
+    case 'profile':
+      return <UserProfile />;
+    case 'change-password':
+      return <ChangePassword />;
     case 'dashboard':
       return (
         <div className="dashboard-content">
